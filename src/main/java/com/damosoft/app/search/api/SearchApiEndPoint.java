@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 
 @Path("search-api")
 @RegisterRestClient
@@ -21,7 +22,7 @@ public class SearchApiEndPoint {
 
     @GET
     @Path("talents/v1")
-    public Uni<TalentsPaginatedResult> searchTalents(@BeanParam QueryOptions opts) {
-        return talentResourceClient.search(opts);
+    public Uni<TalentsPaginatedResult> searchTalents(@BeanParam QueryOptions opts, @QueryParam("talentName") String talentName) {
+        return talentResourceClient.search(opts, talentName);
     }
 }
